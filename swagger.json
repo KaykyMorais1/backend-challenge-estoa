@@ -1,0 +1,9 @@
+{
+    "openApi":"3.0.0",
+    "info": {
+      "title": "Estoa Challenge",
+      "version": "1.0.0",
+      "description": "Documentação da API"
+    },
+    "basePath": "/"
+}

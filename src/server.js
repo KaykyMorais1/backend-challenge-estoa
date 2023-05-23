@@ -1,4 +1,11 @@
-const Sequelize = require("sequelize");
+import express from 'express';
+import cors from 'cors';
+import Sequelize from 'sequelize';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../swagger.json' assert { type: "json" };
+
+const app = express();
+
 const sequelize = new Sequelize(
  'estoaChallenge',
  'root',
@@ -9,8 +16,18 @@ const sequelize = new Sequelize(
   }
 );
 
+app.use(cors())
+
+app.use(express.json());
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
+app.listen(3000, () => console.log("Server is running"));
+
+// app.use(routes);
+
 sequelize.authenticate().then(() => {
-    console.log('Conexão realiada com sucesso.');
+    console.log('Conexão realizada com sucesso.');
  }).catch((error) => {
     console.error('Falha ao estabelecer conexão: ', error);
  });
